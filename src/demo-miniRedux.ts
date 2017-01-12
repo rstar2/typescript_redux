@@ -86,4 +86,7 @@ console.log(store.getState());
 // ->
 // { messages: [ 'Has it really got a team of snow white horses?' ] }
 
+// if using the miniRedux version as 'unsubscribe' is a simple function
 unsubscribe();
+// if using the miniRedux-rxjs version as 'unsubscribe' is a Subscription object not simple function
+// unsubscribe.unsubscribe();

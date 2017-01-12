@@ -1,5 +1,4 @@
-import { Action, Reducer, Store, createStore
-} from 'redux';
+import { Action, Reducer, Store, createStore } from 'redux';
 
 interface AppState {
   messages: string[];
@@ -32,23 +31,23 @@ let initialState: AppState = { messages: [] };
 
 let reducer: Reducer<AppState> =
   (state: AppState = initialState, action: Action) => {
-  switch (action.type) {
-  case 'ADD_MESSAGE':
-    return {
-      messages: state.messages.concat((<AddMessageAction>action).message),
-    };
-  case 'DELETE_MESSAGE':
-    let idx = (<DeleteMessageAction>action).index;
-    return {
-      messages: [
-        ...state.messages.slice(0, idx),
-        ...state.messages.slice(idx + 1, state.messages.length)
-      ]
-    };
-  default:
-    return state;
-  }
-};
+    switch (action.type) {
+      case 'ADD_MESSAGE':
+        return {
+          messages: state.messages.concat((<AddMessageAction>action).message),
+        };
+      case 'DELETE_MESSAGE':
+        let idx = (<DeleteMessageAction>action).index;
+        return {
+          messages: [
+            ...state.messages.slice(0, idx),
+            ...state.messages.slice(idx + 1, state.messages.length)
+          ]
+        };
+      default:
+        return state;
+    }
+  };
 
 // create a new store
 let store: Store<AppState> = createStore<AppState>(reducer);
@@ -75,7 +74,7 @@ console.log(store.getState());
 //      'Wouldnt have no other kind but silk',
 //      'Has it really got a team of snow white horses?' ] }
 
-store.dispatch( MessageActions.createDeleteMessage(1) );
+store.dispatch(MessageActions.createDeleteMessage(1));
 
 console.log(store.getState());
 // -> 
@@ -83,7 +82,7 @@ console.log(store.getState());
 //    [ 'Would you say the fringe was made of silk?',
 //      'Has it really got a team of snow white horses?' ] }
 
-store.dispatch( MessageActions.createDeleteMessage(0) );
+store.dispatch(MessageActions.createDeleteMessage(0));
 
 console.log(store.getState());
 // ->

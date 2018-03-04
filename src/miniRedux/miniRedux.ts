@@ -20,7 +20,7 @@ export class Store<T> {
          private _listeners: ListenerCallback[] = [];
 
          constructor(
-                  private reducer: Reducer<T>,
+                  private _reducer: Reducer<T>,
                   initialState: T
          ) {
                   this._state = initialState;
@@ -31,7 +31,7 @@ export class Store<T> {
          }
 
          dispatch(action: Action): void {
-                  this._state = this.reducer(this._state, action);
+                  this._state = this._reducer(this._state, action);
                   this._listeners.forEach((listener: ListenerCallback) => listener());
          }
 
